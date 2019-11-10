@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        //be sure to replace "willbla" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "arulimages/train-schedule"
     }
     stages {
@@ -14,7 +13,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'exaple-solution'
+                branch 'master'
             }
             steps {
                 script {
@@ -27,7 +26,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             when {
-                branch 'example-solution'
+                branch 'master'
             }
             steps {
                 script {
@@ -40,7 +39,7 @@ pipeline {
         }
         stage('DeployToProduction') {
             when {
-                branch 'example-solution'
+                branch 'master'
             }
             steps {
                 input 'Deploy to Production?'
